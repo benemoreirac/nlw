@@ -15,15 +15,15 @@ for (const link of links) {
   })
 }
 
-const header = document.querySelector('#header')
-const navHeight = header.offsetHeight
-window.addEventListener('scroll', function () {
+function changeHeaderWhenScroll() {
+  const header = document.querySelector('#header')
+  const navHeight = header.offsetHeight
   if (window.scrollY >= navHeight) {
     header.classList.add('scroll')
   } else {
     header.classList.remove('scroll')
   }
-})
+}
 
 const swiper = new Swiper('.swiper-container', {
   slidesPerView: 1,
@@ -50,3 +50,17 @@ scrollReveal.reveal(
   `,
   { interval: 100 }
 )
+
+function backToTop() {
+  const backToTopButton = document.querySelector('.back-to-top')
+  if (window.scrollY >= 500) {
+    backToTopButton.classList.add('show')
+  } else {
+    backToTopButton.classList.remove('show')
+  }
+}
+
+window.addEventListener('scroll', function () {
+  changeHeaderWhenScroll()
+  backToTop()
+})
